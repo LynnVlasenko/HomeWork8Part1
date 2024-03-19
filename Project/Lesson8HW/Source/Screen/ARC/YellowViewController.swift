@@ -42,8 +42,20 @@ private extension YellowViewController {
     func setup() {
         
         printer = Printer()
-        printer.yellowViewController = self
+        
+        // specify the delegate for Printer VC
+        printer.delegate = self
         
         printer.startPrinting()
+    }
+}
+
+extension YellowViewController: TimerActionCreatorProtocol {
+    // implement a function that describes what actions will be performed while the timer is running
+    func createTimerAction(with seconds: Int) {
+        
+        let secondsText = "\(seconds) секунд"
+        
+        print("\(textToPrint()) \(secondsText)")
     }
 }
